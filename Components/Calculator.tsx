@@ -2,6 +2,8 @@ import { Colors } from "@/utils/Colors";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
+import DropdownComponent from "./DropdownComponent";
+
 const Calculator = () => {
 	const [firstValue, setFirstValue] = useState("");
 	const [displayValue, setDisplayValue] = useState("0");
@@ -55,6 +57,7 @@ const Calculator = () => {
 				<Text style={{ fontSize: 70, fontWeight: "300" }}>{displayValue}</Text>
 			</View>
 			<View style={styles.keypad}>
+				<DropdownComponent />
 				<Button title="C" type="top" onPress={handleClear} />
 				<Button title="⌫" type="top" onPress={handleDelete} />
 				<Button title="%" type="top" onPress={() => handleOperatorInput("%")} />
