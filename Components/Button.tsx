@@ -9,7 +9,7 @@ const Button = ({
 }: {
 	title: string;
 	type: "top" | "right" | "number";
-	onPress: Function
+	onPress: Function;
 }) => {
 	return (
 		<TouchableOpacity
@@ -22,7 +22,7 @@ const Button = ({
 			]}
 			onPress={onPress}
 		>
-			<Text style={{ fontSize: 34, color: type == "number" ? Colors.black : Colors.white }}>
+			<Text style={{ fontSize: 34, color: type === "number" ? Colors.black : Colors.white }}>
 				{title}
 			</Text>
 		</TouchableOpacity>
