@@ -1,8 +1,9 @@
-import { Colors } from "@/utils/Colors";
+import { Colors, Lightheme, Darktheme } from "@/utils/Colors";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import DropdownComponent from "./DropdownComponent";
+
 
 const Calculator = () => {
 	const [firstValue, setFirstValue] = useState("");
