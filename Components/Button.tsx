@@ -1,6 +1,8 @@
 import { Colors } from "@/utils/Colors";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, GestureResponderEvent } from "react-native";
+
+
 
 const Button = ({
 	title,
@@ -9,7 +11,7 @@ const Button = ({
 }: {
 	title: string;
 	type: "top" | "right" | "number";
-	onPress: Function;
+	onPress: (event: GestureResponderEvent) => void;
 }) => {
 	return (
 		<TouchableOpacity
