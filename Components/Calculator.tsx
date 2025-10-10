@@ -9,6 +9,25 @@ const Calculator = () => {
 	const [firstValue, setFirstValue] = useState("");
 	const [displayValue, setDisplayValue] = useState("0");
 	const [operator, setOperator] = useState("");
+    const [tema, setTema] = useState(Lightheme);
+
+	type TemaValue = "Lightheme" | "Darktheme" | "Colors";
+
+	const handleTemaChange = (value : TemaValue) => {
+    switch (value) {
+		case "Lightheme":
+        	setTema(Lightheme);
+        	break;
+      	case "Darktheme":
+        	setTema(Darktheme);
+        	break;
+      	case "Colors":
+        	setTema(Colors);
+        	break;
+      	default:
+        setTema(Lightheme);
+    }
+};
 
 	const handleNumberInput = (num: string) => {
 		if (displayValue === "0") {
