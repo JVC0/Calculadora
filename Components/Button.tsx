@@ -1,6 +1,6 @@
-import { Colors } from "@/utils/Colors";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useTheme } from "./ThemeContext";
 
 const Button = ({
 	title,
@@ -9,26 +9,30 @@ const Button = ({
 }: {
 	title: string;
 	type: "top" | "right" | "number";
-	onPress: Function
+	onPress: (event: GestureResponderEvent) => void;
 }) => {
+	const { colors } = useTheme();
+
 	return (
 		<TouchableOpacity
 			style={[
 				styles.button,
 				{
 					backgroundColor:
-						type === "top" ? Colors.btnDark : type === "right" ? Colors.btRight : Colors.btnLight,
+						type === "top" ? colors.btnDark : type === "right" ? colors.btRight : colors.btnLight,
 				},
 			]}
 			onPress={onPress}
 		>
-			<Text style={{ fontSize: 34, color: type == "number" ? Colors.black : Colors.white }}>
+			<Text style={{ fontSize: 34, color: type === "number" ? colors.black : colors.white }}>
 				{title}
 			</Text>
 		</TouchableOpacity>
 	);
 };
+
 export default Button;
+
 const styles = StyleSheet.create({
 	button: {
 		height: 70,
@@ -37,6 +41,5 @@ const styles = StyleSheet.create({
 		padding: 0,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: Colors.btnDark,
 	},
 });
