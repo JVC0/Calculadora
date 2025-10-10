@@ -7,39 +7,64 @@ const Calculator = () => {
 	const [displayValue, setDisplayValue] = useState("0");
 	const [operator, setOperator] = useState("");
 
+
 	const handleNumberInput = (num: string) => {
 		if (displayValue === "0") {
 			setDisplayValue(num);
+
 		} else {
 			setDisplayValue(displayValue + num);
 		}
 	};
-	const handleOperatorInput = (operator: string) => {
-		setOperator(operator);
-		if (displayValue.includes("(-")) {
-			setFirstValue(displayValue + ")");
-		} else {
-			setFirstValue(displayValue);
-		}
-		setDisplayValue("0");
-	};
-	const handleCalculation = () => {
-		const num1 = parseFloat(firstValue.replace(/[()+]/g, ""));
-		const num2 = parseFloat(displayValue.replace(/[()+]/g, ""));
-		if (operator === "+") {
-			setDisplayValue((num1 + num2).toString());
-		} else if (operator === "-") {
-			setDisplayValue((num1 - num2).toString());
-		} else if (operator === "X") {
-			setDisplayValue((num1 * num2).toString());
-		} else if (operator === "÷") {
-			setDisplayValue((num1 / num2).toString());
-		} else if (operator === "%") {
-			setDisplayValue(((num1 / 100) * num2).toString());
-		}
-		setOperator("");
-		setFirstValue("");
-	};
+	const calculateResult = (): number => {
+    if (!operator || !firstValue) return parseFloat(displayValue);
+
+    const num1 = parseFloat(firstValue.replace(/[()+]/g, ""));
+    const num2 = parseFloat(displayValue.replace(/[()+]/g, ""));
+    
+    switch (operator) {
+        case "+": return num1 + num2;
+        case "-": return num1 - num2;
+        case "X": return num1 * num2;
+        case "÷": 
+            if (num2 === 0) {
+                return 0;
+            }
+            return num1 / num2;
+        case "%": return (num1 / 100);
+        default: return num2;
+    }
+};
+
+const handleOperatorInput = (newOperator: string) => {
+    if (displayValue === "0" && firstValue && operator) {
+        setOperator(newOperator);
+        return;
+    }
+    
+    let currentValue = displayValue;
+    if (displayValue.includes("(-")) {
+        currentValue = displayValue + ")";
+    }
+    if (operator && firstValue && displayValue !== "0") {
+        const result = calculateResult();
+        setFirstValue(String(result));
+    } else {
+        setFirstValue(currentValue);
+    }
+     
+    setOperator(newOperator);
+    setDisplayValue("0");
+};
+
+const handleCalculation = () => {
+    if (!operator || !firstValue) return;
+    
+    const result = calculateResult();
+    setDisplayValue(String(result));
+    setOperator("");
+    setFirstValue("");
+};
 	const handleClear = () => {
 		setDisplayValue("0");
 		setOperator("");
