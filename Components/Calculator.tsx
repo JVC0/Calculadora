@@ -3,31 +3,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import DropdownComponent from "./DropdownComponent";
+import Index from "@/app";
 
 
-const Calculator = () => {
+const Calculator = ({temas}) => {
 	const [firstValue, setFirstValue] = useState("");
 	const [displayValue, setDisplayValue] = useState("0");
 	const [operator, setOperator] = useState("");
-    const [tema, setTema] = useState(Lightheme);
-
-	type TemaValue = "Lightheme" | "Darktheme" | "Colors";
-
-	const handleTemaChange = (value : TemaValue) => {
-    switch (value) {
-		case "Lightheme":
-        	setTema(Lightheme);
-        	break;
-      	case "Darktheme":
-        	setTema(Darktheme);
-        	break;
-      	case "Colors":
-        	setTema(Colors);
-        	break;
-      	default:
-        setTema(Lightheme);
-    }
-};
 
 	const handleNumberInput = (num: string) => {
 		if (displayValue === "0") {
@@ -70,6 +52,30 @@ const Calculator = () => {
 			setDisplayValue(displayValue.slice(0, -1));
 		}
 	};
+
+	const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+	display: {
+		flex: 1,
+		backgroundColor: temas.black,
+		paddingVertical: 20,
+		paddingHorizontal: 40,
+		alignItems: "flex-end",
+		justifyContent: "flex-end",
+	},
+	keypad: {
+		flex: 2,
+		backgroundColor: temas.black,
+		flexDirection: "row",
+		flexWrap: "wrap",
+		justifyContent: "center",
+		gap: 30,
+		padding: 7,
+	},
+});
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.display}>
@@ -77,7 +83,6 @@ const Calculator = () => {
 				<Text style={{ fontSize: 70, fontWeight: "300" }}>{displayValue}</Text>
 			</View>
 			<View style={styles.keypad}>
-				<DropdownComponent />
 				<Button title="C" type="top" onPress={handleClear} />
 				<Button title="⌫" type="top" onPress={handleDelete} />
 				<Button title="%" type="top" onPress={() => handleOperatorInput("%")} />
@@ -105,25 +110,4 @@ const Calculator = () => {
 
 export default Calculator;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	display: {
-		flex: 1,
-		backgroundColor: Colors.gray,
-		paddingVertical: 20,
-		paddingHorizontal: 40,
-		alignItems: "flex-end",
-		justifyContent: "flex-end",
-	},
-	keypad: {
-		flex: 2,
-		backgroundColor: Colors.light,
-		flexDirection: "row",
-		flexWrap: "wrap",
-		justifyContent: "center",
-		gap: 30,
-		padding: 7,
-	},
-});
+

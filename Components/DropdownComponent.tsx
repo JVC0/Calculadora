@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-  
-  const DropdownComponent = () => {
-    const [tema, setTema] = useState("Lightheme");
+
+interface DropdownComponentProps {
+  onChangeTema: (value: string) => void;
+}
+
+const DropdownComponent: React.FC<DropdownComponentProps> = ({ onChangeTema }) => {
     return (
-      <select style={styles.dropdown} value={tema} onChange={e => setTema(e.target.value)}>
-        <option value={"Lightheme"}>Tema claro</option>
-        <option value={"Darktheme"}>Tema oscuro</option>
-        <option value={"Colors"}>Tema Colorido</option>
-      </select>
-    );
-  };
+    <select
+      onChange={(e) => onChangeTema(e.target.value)}
+      style={{
+        margin: 16,
+        height: 40,
+        borderRadius: 8,
+        padding: 8,
+      }}
+    >
+      <option value="Lightheme">Tema Claro</option>
+      <option value="Darktheme">Tema Oscuro</option>
+      <option value="Colors">Tema Colorido</option>
+    </select>
+  );
+};
 
   export default DropdownComponent;
 
@@ -31,3 +42,4 @@ import { StyleSheet } from 'react-native';
       elevation: 2,
     }
   });
+

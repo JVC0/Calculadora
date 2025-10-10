@@ -14,7 +14,7 @@ export const Lightheme = {
 	btnLight: "#F6F5F2",
 	btnDark: "#09122C",
 	btRight: "#7743DB",
-	black: "#171617",
+	black: "#ad51adff",
 	white: "#fefeff",
 	gray: "#f2f2f4",
 };
