@@ -1,13 +1,15 @@
 import { Colors } from "@/utils/Colors";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import { useTheme } from "./ThemeContext";
+
 const Calculator = () => {
 	const { colors } = useTheme();
 	const [firstValue, setFirstValue] = useState("");
 	const [displayValue, setDisplayValue] = useState("0");
 	const [operator, setOperator] = useState("");
+	const { width, height } = Dimensions.get('window');
 
 	const handleNumberInput = (num: string) => {
 		if (num === ".") {
@@ -119,8 +121,8 @@ const Calculator = () => {
 	display: {
 		flex: 1,
 		backgroundColor: colors.gray,
-		paddingVertical: 20,
-		paddingHorizontal: 40,
+		paddingVertical: height * 0.05,
+		paddingHorizontal: height * 0.03,
 		alignItems: "flex-end",
 		justifyContent: "flex-end",
 	},
