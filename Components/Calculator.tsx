@@ -173,7 +173,7 @@ const Calculator = () => {
 			</View>
 			<View style={styles.keypad}>
 				<Button title="C" type="top" onPress={handleClear} />
-				<Button title="( )" type="top" />
+				<Button title="⌫" type="top" onPress={handleDelete} />
 				<Button title="%" type="top" onPress={() => handleOperatorInput("%")} />
 				<Button title="÷" type="right" onPress={() => handleOperatorInput("÷")} />
 				
