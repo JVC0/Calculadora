@@ -3,7 +3,7 @@ import { Dimensions, Linking, StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import { useTheme } from "./ThemeContext";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 const Calculator = () => {
 	const { colors } = useTheme();
@@ -44,14 +44,19 @@ const Calculator = () => {
 		const num2 = parseFloat(displayValue.replace(/[()+]/g, ""));
 
 		switch (operator) {
-			case "+": return num1 + num2;
-			case "-": return num1 - num2;
-			case "X": return num1 * num2;
+			case "+":
+				return num1 + num2;
+			case "-":
+				return num1 - num2;
+			case "X":
+				return num1 * num2;
 			case "÷":
 				if (num2 === 0) return 0;
 				return num1 / num2;
-			case "%": return (num1 / 100);
-			default: return num2;
+			case "%":
+				return num1 / 100;
+			default:
+				return num2;
 		}
 	};
 
@@ -78,8 +83,8 @@ const Calculator = () => {
 	};
 
 	const handleCalculation = () => {
-		if (displayValue === "2773"){
-			Linking.openURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+		if (displayValue === "2773") {
+			Linking.openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		}
 		if (!operator || !firstValue) return;
 		const result = calculateResult();
@@ -141,7 +146,7 @@ const Calculator = () => {
 			backgroundColor: colors.gray,
 			paddingVertical: 20,
 			paddingHorizontal: 20,
-			paddingTop: 80,
+			paddingTop: 200,
 			minHeight: height * 0.25,
 			justifyContent: "flex-end",
 		},
@@ -164,10 +169,20 @@ const Calculator = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.display}>
-				<Text style={[styles.displayText, { fontSize: getOperatorFontSize(), fontWeight: "300", color: colors.black }]}>
+				<Text
+					style={[
+						styles.displayText,
+						{ fontSize: getOperatorFontSize(), fontWeight: "300", color: colors.black },
+					]}
+				>
 					{firstValue + operator}
 				</Text>
-				<Text style={[styles.displayText, { fontSize: getDisplayFontSize(), fontWeight: "300", color: colors.black }]}>
+				<Text
+					style={[
+						styles.displayText,
+						{ fontSize: getDisplayFontSize(), fontWeight: "300", color: colors.black },
+					]}
+				>
 					{displayValue}
 				</Text>
 			</View>
@@ -176,22 +191,22 @@ const Calculator = () => {
 				<Button title="⌫" type="top" onPress={handleDelete} />
 				<Button title="%" type="top" onPress={() => handleOperatorInput("%")} />
 				<Button title="÷" type="right" onPress={() => handleOperatorInput("÷")} />
-				
+
 				<Button title="7" type="number" onPress={() => handleNumberInput("7")} />
 				<Button title="8" type="number" onPress={() => handleNumberInput("8")} />
 				<Button title="9" type="number" onPress={() => handleNumberInput("9")} />
 				<Button title="X" type="right" onPress={() => handleOperatorInput("X")} />
-				
+
 				<Button title="4" type="number" onPress={() => handleNumberInput("4")} />
 				<Button title="5" type="number" onPress={() => handleNumberInput("5")} />
 				<Button title="6" type="number" onPress={() => handleNumberInput("6")} />
 				<Button title="-" type="right" onPress={() => handleOperatorInput("-")} />
-				
+
 				<Button title="1" type="number" onPress={() => handleNumberInput("1")} />
 				<Button title="2" type="number" onPress={() => handleNumberInput("2")} />
 				<Button title="3" type="number" onPress={() => handleNumberInput("3")} />
 				<Button title="+" type="right" onPress={() => handleOperatorInput("+")} />
-				
+
 				<Button title="+/-" type="number" onPress={() => handlconvertsign()} />
 				<Button title="0" type="number" onPress={() => handleNumberInput("0")} />
 				<Button title="." type="number" onPress={() => handleNumberInput(".")} />
